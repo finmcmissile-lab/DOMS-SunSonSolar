@@ -1,0 +1,312 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(225, 242, 255, 0.88), rgba(245, 251, 255, 0.95)),
+        radial-gradient(circle at top, #9ddcff, transparent 45%);
+    color: #1d2b3a;
+    padding: 45px 20px;
+
+    
+    background-image: url("solarsun-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Main container */
+.container {
+    width: 100%;
+    max-width: 760px;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 82, 140, 0.18);
+    border: 1px solid #dcecf7;
+}
+
+/* Solar company header */
+.logo {
+    position: relative;
+    background: linear-gradient(135deg, #034f7d, #087eb8);
+    color: white;
+    text-align: center;
+    padding: 38px 20px 42px;
+    overflow: hidden;
+}
+
+/* Solar rays */
+.logo::before {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    top: -145px;
+    right: -40px;
+    background: rgba(255, 207, 64, 0.15);
+    box-shadow:
+        0 0 0 25px rgba(255, 207, 64, 0.08),
+        0 0 0 50px rgba(255, 207, 64, 0.05);
+}
+
+/* Sun */
+.sun-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffd95a, #f5b800);
+
+    color: #ffffff;
+    font-size: 38px;
+
+    box-shadow:
+        0 0 0 8px rgba(255, 211, 71, 0.18),
+        0 0 25px rgba(255, 204, 55, 0.45);
+}
+
+/* Solar panel effect behind header */
+.logo::after {
+    content: "";
+    position: absolute;
+    bottom: -38px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+
+    width: 420px;
+    height: 95px;
+
+    background:
+        linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.15) 25%, transparent 26%),
+        linear-gradient(0deg, transparent 24%, rgba(255,255,255,0.15) 25%, transparent 26%),
+        #075985;
+
+    background-size: 65px 65px;
+
+    border: 2px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+
+    opacity: 0.8;
+}
+
+.logo h1 {
+    position: relative;
+    z-index: 2;
+
+    font-size: 34px;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.logo p {
+    position: relative;
+    z-index: 2;
+
+    font-size: 14px;
+    color: #e1f4ff;
+}
+
+/* Form heading */
+.form-title {
+    padding: 38px 45px 10px;
+}
+
+.form-title h2 {
+    font-size: 25px;
+    color: #075985;
+    margin-bottom: 7px;
+}
+
+.form-title p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* Form */
+form {
+    padding: 20px 45px 45px;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #334155;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 14px;
+
+    border: 1px solid #cbddea;
+    border-radius: 9px;
+
+    background: #f8fcff;
+    color: #1d2b3a;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #7bb7d9;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #0b76b7;
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 118, 183, 0.12);
+}
+
+/* Department */
+#department_group {
+    transition: 0.2s ease;
+}
+
+/* Register button */
+button {
+    width: 100%;
+    height: 50px;
+
+    margin-top: 8px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: linear-gradient(135deg, #087eb8, #075985);
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #075985, #034f7d);
+
+    box-shadow:
+        0 7px 18px rgba(8, 126, 184, 0.28);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        border-radius: 14px;
+    }
+
+    .logo {
+        padding: 30px 15px 35px;
+    }
+
+    .logo h1 {
+        font-size: 28px;
+    }
+
+    .sun-icon {
+        width: 62px;
+        height: 62px;
+        font-size: 32px;
+    }
+
+    .form-title {
+        padding: 30px 25px 10px;
+    }
+
+    form {
+        padding: 20px 25px 30px;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* Registration message */
+.message {
+    display: none;
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Success message */
+.message.success {
+    display: block;
+    background: #e8f7ee;
+    border: 1px solid #8fd3a8;
+    color: #18733a;
+}
+
+/* Error message */
+.message.error {
+    display: block;
+    background: #fff0f0;
+    border: 1px solid #e5a3a3;
+    color: #b42323;
+}
+
+/* Error list */
+.message ul {
+    margin: 5px 0 0 20px;
+    padding: 0;
+}
+
+.message li {
+    margin-bottom: 3px;
+}
+}
