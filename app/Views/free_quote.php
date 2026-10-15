@@ -15,27 +15,36 @@
             scroll-behavior: smooth;
         }
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 16px;
-            line-height: 1.7;
-            color: #1d2b3a;
-            background: #f5fbff;
-        }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #1d2b3a;
+    background-color: #f5f9fc;
+    background-image:
+        linear-gradient(
+            rgba(245, 249, 252, 0.55),
+            rgba(245, 249, 252, 0.55)
+        ),
+        url("<?= base_url('assets/images/solarsun-background.jpg') ?>");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 
         a {
             text-decoration: none;
         }
 
-        .quote-page {
-            min-height: 100vh;
-            padding: 30px 7% 70px;
-            background:
-                radial-gradient(ellipse at 10% 5%, rgba(27, 135, 202, .12), transparent 38%),
-                #f5fbff;
-        }
-
+.quote-page {
+    min-height: 100vh;
+    padding: 30px 7% 70px;
+    background: transparent;
+}
 
 .quote-navbar {
     max-width: none;
@@ -108,81 +117,68 @@
             padding: 24px 0;
         }
 
-        .quote-eyebrow {
-            margin-bottom: 14px;
-            color: #087eb8;
-            font-size: 13px;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-        }
+    
+.quote-eyebrow {
+    margin-bottom: 14px;
+    color: #075985;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
 
-        .quote-intro h1 {
-            margin: 0 0 20px;
-            color: #034f7d;
-            font-size: clamp(35px, 4vw, 49px);
-            line-height: 1.15;
-            letter-spacing: -.8px;
-        }
 
-        .quote-highlight {
-            color: #087eb8;
-        }
+.quote-intro h1 {
+    margin: 0 0 20px;
+    color: #075985;
+    font-size: clamp(35px, 4vw, 49px);
+    line-height: 1.15;
+    letter-spacing: -.8px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+}
 
-        .quote-intro > p {
-            margin: 0 0 28px;
-            color: #344b5e;
-            font-size: 16px;
-            line-height: 1.85;
-        }
 
-        .quote-benefits {
-            display: grid;
-            gap: 18px;
-            margin-top: 30px;
-        }
+.quote-highlight {
+    color: #087eb8;
+}
 
-        .quote-benefit {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-        }
 
-        .benefit-icon {
-            flex: 0 0 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 13px;
-            background: linear-gradient(135deg, #eaf6fd, #d6efff);
-            color: #087eb8;
-            font-size: 21px;
-            font-weight: 800;
-        }
+.quote-intro > p {
+    margin: 0 0 28px;
+     color: #000000;
+    font-size: 16px;
+    line-height: 1.85;
+}
 
-        .quote-benefit strong {
-            display: block;
-            margin-bottom: 3px;
-            color: #075985;
-            font-size: 15px;
-        }
 
-        .quote-benefit p {
-            margin: 0;
-            color: #657789;
-            font-size: 13px;
-            line-height: 1.7;
-        }
+.quote-benefit strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #075985;
+    font-size: 15px;
+    font-weight: 800;
+}
 
-        .quote-card {
-            min-width: 0;
-            padding: 34px;
-            border: 1px solid #dcecf7;
-            border-radius: 16px;
-            background: #fff;
-            box-shadow: 0 18px 45px rgba(0, 82, 140, .12);
-        }
+
+.quote-benefit p {
+    margin: 0;
+     color: #000000;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.quote-card {
+    min-width: 0;
+    padding: 34px;
+    border: 1px solid #dce7f0;
+    border-top: 4px solid #f5b800;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow:
+        0 22px 55px rgba(11, 37, 69, 0.12),
+        0 3px 12px rgba(8, 126, 184, 0.05);
+}
 
         .quote-card-heading {
             margin-bottom: 27px;
@@ -292,26 +288,18 @@
             margin-top: 27px;
         }
 
-        .quote-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 47px;
-            padding: 12px 20px;
-            border: 0;
-            border-radius: 9px;
-            font: inherit;
-            font-size: 14px;
-            font-weight: 700;
-            text-align: center;
-            cursor: pointer;
-            transition: transform .2s, box-shadow .2s, background .2s;
-        }
+        
+.quote-button-primary {
+    flex: 1 1 200px;
+    background: linear-gradient(135deg, #ffd34d, #f5b800);
+    color: #0b2545;
+    box-shadow: 0 6px 16px rgba(245, 184, 0, 0.18);
+}
 
-        .quote-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 82, 140, .15);
-        }
+.quote-button-primary:hover {
+    background: linear-gradient(135deg, #ffe17a, #ffca28);
+    box-shadow: 0 9px 22px rgba(245, 184, 0, 0.28);
+}
 
         .quote-button-primary {
             flex: 1 1 200px;
@@ -619,16 +607,19 @@
 
                         <div class="form-group">
                             <label for="email">Email Address <span class="required-mark">*</span></label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                maxlength="150"
-                                autocomplete="email"
-                                placeholder="you@example.com"
-                                value="<?= esc(old('email') ?? '') ?>"
-                                required
-                            >
+                            
+<input
+    type="email"
+    id="email"
+    name="email"
+    maxlength="150"
+    autocomplete="email"
+    placeholder="you@example.com"
+    title="Enter a valid email address, such as you@example.com."
+    value="<?= esc(old('email') ?? '') ?>"
+    required
+>
+
                             <?php if (isset($validation) && $validation->hasError('email')): ?>
                                 <div class="field-error"><?= esc($validation->getError('email')) ?></div>
                             <?php endif; ?>
@@ -636,16 +627,21 @@
 
                         <div class="form-group full-width">
                             <label for="phone_number">Phone Number <span class="required-mark">*</span></label>
-                            <input
-                                type="tel"
-                                id="phone_number"
-                                name="phone_number"
-                                maxlength="20"
-                                autocomplete="tel"
-                                placeholder="Enter your contact number"
-                                value="<?= esc(old('phone_number') ?? '') ?>"
-                                required
-                            >
+                           
+<input
+    type="tel"
+    id="phone_number"
+    name="phone_number"
+    maxlength="11"
+    minlength="11"
+    pattern="[0-9]{11}"
+    title="Enter an 11-digit mobile number using numbers only."
+    autocomplete="tel"
+    placeholder="Enter your contact number"
+    value="<?= esc(old('phone_number') ?? '') ?>"
+    required
+>
+
                             <?php if (isset($validation) && $validation->hasError('phone_number')): ?>
                                 <div class="field-error"><?= esc($validation->getError('phone_number')) ?></div>
                             <?php endif; ?>

@@ -19,21 +19,31 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     line-height: 1.7;
-    color: #1d2b3a;
-    background: #f5fbff;
+    color: #000000;
+    background-color: #f5f9fc;
+    background-image:
+        linear-gradient(
+            rgba(245, 249, 252, 0.55),
+            rgba(245, 249, 252, 0.55)
+        ),
+        url("<?= base_url('assets/images/solarsun-background.jpg') ?>");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 a {
     text-decoration: none;
 }
 
+
 .schedule-page {
     min-height: 100vh;
     padding: 30px 7% 70px;
-    background:
-        radial-gradient(ellipse at 10% 5%, rgba(27, 135, 202, .12), transparent 38%),
-        #f5fbff;
+    background: transparent;
 }
+
 
 .schedule-navbar {
     max-width: none;
@@ -96,7 +106,7 @@ a {
 
 .schedule-eyebrow {
     margin-bottom: 14px;
-    color: #087eb8;
+    color: #000000;
     font-size: 13px;
     font-weight: 800;
     letter-spacing: 1.2px;
@@ -117,7 +127,7 @@ a {
 
 .schedule-intro > p {
     margin: 0 0 28px;
-    color: #344b5e;
+    color: #000000;
     font-size: 16px;
     line-height: 1.85;
 }
@@ -156,7 +166,7 @@ a {
 
 .schedule-benefit p {
     margin: 0;
-    color: #657789;
+    color: #000000;
     font-size: 13px;
     line-height: 1.7;
 }
@@ -167,7 +177,7 @@ a {
     border: 1px solid #dcecf7;
     border-radius: 9px;
     background: #eaf6fd;
-    color: #344b5e;
+    color: #000000;
     font-size: 13px;
     line-height: 1.7;
 }
@@ -175,10 +185,13 @@ a {
 .schedule-card {
     min-width: 0;
     padding: 34px;
-    border: 1px solid #dcecf7;
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 18px 45px rgba(0, 82, 140, .12);
+    border: 1px solid #dce7f0;
+    border-top: 4px solid #f5b800;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow:
+        0 22px 55px rgba(11, 37, 69, 0.12),
+        0 3px 12px rgba(8, 126, 184, 0.05);
 }
 
 .schedule-card-heading {
@@ -294,7 +307,57 @@ a {
     margin-bottom: 20px;
     padding: 13px 15px;
     border-radius: 8px;
-    font-size:
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.schedule-success {
+    color: #166534;
+    background: #dcfce7;
+    border: 1px solid #86efac;
+}
+
+.schedule-failure {
+    color: #991b1b;
+    background: #fee2e2;
+    border: 1px solid #fca5a5;
+}
+
+.schedule-submit {
+    display: block;
+    width: 100%;
+    min-height: 50px;
+    margin-top: 18px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffd34d, #f5b800);
+    color: #0b2545;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(245, 184, 0, 0.22);
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+}
+
+.schedule-submit:hover {
+    background: linear-gradient(135deg, #ffe17a, #ffca28);
+    box-shadow: 0 9px 22px rgba(245, 184, 0, 0.28);
+    transform: translateY(-2px);
+}
+
+.schedule-submit:active {
+    transform: translateY(0);
+}
+
+.hero p,
+.testimonials p,
+.account-section p,
+.getting-started p {
+    color: #000000;
 }
 </style>
 </head>
@@ -372,11 +435,17 @@ a {
                 </div>
             <?php endif; ?>
 
-            <?php if (isset($submission_error)): ?>
-                <div class="schedule-alert schedule-failure" role="alert">
-                    <?= esc($submission_error) ?>
-                </div>
-            <?php endif; ?>
+        
+<?php if (isset($validation)): ?>
+    <div class="schedule-alert schedule-failure" role="alert">
+        <strong>Please correct the following:</strong>
+        <ul>
+            <?php foreach ($validation->getErrors() as $error): ?>
+                <li><?= esc($error) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
 
             <form action="<?= site_url('schedule-service') ?>" method="post">
                 <?= csrf_field() ?>
@@ -399,15 +468,19 @@ a {
 
                 <div class="schedule-field">
                     <label for="email">Email Address *</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        maxlength="150"
-                        value="<?= esc(old('email') ?? '') ?>"
-                        autocomplete="email"
-                        required
-                    >
+                    
+<input
+    type="email"
+    id="email"
+    name="email"
+    maxlength="150"
+    autocomplete="email"
+    placeholder="you@example.com"
+    title="Enter a valid email address, such as you@example.com."
+    value="<?= esc(old('email') ?? '') ?>"
+    required
+>
+
                     <?php if (isset($validation) && $validation->hasError('email')): ?>
                         <div class="schedule-error"><?= esc($validation->getError('email')) ?></div>
                     <?php endif; ?>
@@ -415,16 +488,20 @@ a {
 
                 <div class="schedule-field">
                     <label for="phone_number">Phone Number *</label>
-                    <input
-                        type="tel"
-                        id="phone_number"
-                        name="phone_number"
-                        maxlength="20"
-                        value="<?= esc(old('phone_number') ?? '') ?>"
-                        autocomplete="tel"
-                        required
-                    >
-                    <?php if (isset($validation) && $validation->hasError('phone_number')): ?>
+                    
+ <input
+    type="tel"
+    id="phone_number"
+    name="phone_number"
+    maxlength="11"
+    minlength="11"
+    pattern="[0-9]{11}"
+    title="Enter an 11-digit mobile number using numbers only."
+    value="<?= esc(old('phone_number') ?? '') ?>"
+    autocomplete="tel"
+    required
+>
+               <?php if (isset($validation) && $validation->hasError('phone_number')): ?>
                         <div class="schedule-error"><?= esc($validation->getError('phone_number')) ?></div>
                     <?php endif; ?>
                 </div>

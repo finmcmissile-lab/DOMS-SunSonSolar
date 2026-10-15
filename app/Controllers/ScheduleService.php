@@ -8,14 +8,24 @@ class ScheduleService extends BaseController
 {
     public function index()
     {
-        if ($this->request->getMethod() === 'GET') {
-            return view('schedule_service');
-        }
+        // Require login before allowing access to the service form.
+if (! session()->get('isLoggedIn')) {
+    session()->setFlashdata(
+        'login_required',
+        'Please log in to access Sun Son Solar services.'
+    );
 
+    return redirect()->to(site_url('login'));
+}
+
+// Show the form when the visitor opens the page.
+if ($this->request->getMethod() === 'GET') {
+    return view('schedule_service');
+}
         $rules = [
             'full_name' => 'required|max_length[150]',
             'email' => 'required|valid_email|max_length[150]',
-            'phone_number' => 'required|max_length[20]',
+            'phone_number' => 'required|regex_match[/^[0-9]{11}$/]',
             'service_address' => 'required',
             'service_type' => 'required|in_list[Solar Consultation,Solar Installation,Solar Maintenance,Inspection]',
             'preferred_date' => 'permit_empty|valid_date[Y-m-d]',

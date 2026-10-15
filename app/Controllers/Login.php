@@ -3,19 +3,21 @@
 namespace App\Controllers;
 
 use App\Models\CustomerModel;
+use App\Models\EmployeeModel;
 
 class Login extends BaseController
 {
     public function index()
     {
-        // GET: Display the existing login page.
-       if ($this->request->getMethod() === 'GET') {
-       return view('login', [
-        'registration_success' => session()->getFlashdata('registration_success'),
-    ]);
-}
+        // Display the login page.
+        if ($this->request->getMethod() === 'GET') {
+            return view('login', [
+    'registration_success' => session()->getFlashdata('registration_success'),
+    'login_required' => session()->getFlashdata('login_required'),
+]);
+        }
 
-        // POST: Read the submitted login details.
+        // Read the submitted login credentials.
         $identifier = trim($this->request->getPost('username') ?? '');
         $password = $this->request->getPost('password') ?? '';
 
@@ -31,7 +33,7 @@ class Login extends BaseController
             ]);
         }
 
-        // Find the customer using their username or email.
+        // Check the customers table first.
         $customerModel = new CustomerModel();
 
         $customer = $customerModel
@@ -41,29 +43,48 @@ class Login extends BaseController
             ->groupEnd()
             ->first();
 
-        // Reject invalid credentials.
-        if (
-            ! $customer ||
-            ! password_verify($password, $customer['password'])
-        ) {
-            return view('login', [
-                'login_error' => 'Invalid username/email or password.',
+        if ($customer && password_verify($password, $customer['password'])) {
+            session()->regenerate();
+
+            session()->set([
+                'customer_id' => $customer['customer_id'],
+                'customer_name' => $customer['first_name'],
+                'customer_username' => $customer['username'],
+                'isLoggedIn' => true,
+                'user_type' => 'Customer',
             ]);
+
+            return redirect()->to(base_url('/'));
         }
 
-        // Regenerate the session ID after successful authentication.
-        session()->regenerate();
+        // If no valid customer login was found, check employees.
+        $employeeModel = new EmployeeModel();
 
-        // Store the authenticated customer's identity.
-        session()->set([
-            'customer_id' => $customer['customer_id'],
-            'customer_name' => $customer['first_name'],
-            'customer_username' => $customer['username'],
-            'isLoggedIn' => true,
-            'user_type' => 'Customer',
+        $employee = $employeeModel
+            ->groupStart()
+                ->where('username', $identifier)
+                ->orWhere('email', $identifier)
+            ->groupEnd()
+            ->first();
+
+        if ($employee && password_verify($password, $employee['password'])) {
+            session()->regenerate();
+
+            session()->set([
+                'employee_id' => $employee['employee_id'],
+                'employee_name' => $employee['first_name'],
+                'employee_username' => $employee['username'],
+                'employee_department' => $employee['department'],
+                'isLoggedIn' => true,
+                'user_type' => 'Employee',
+            ]);
+
+            return redirect()->to(base_url('/'));
+        }
+
+        // Reject credentials that match neither account type.
+        return view('login', [
+            'login_error' => 'Invalid username/email or password.',
         ]);
-
-        // Redirect to the homepage.
-        return redirect()->to(base_url('/'));
     }
 }

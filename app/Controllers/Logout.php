@@ -6,11 +6,15 @@ class Logout extends BaseController
 {
     public function index()
     {
-        // Clear the customer's session data.
+        // Remove both customer and employee session data.
         session()->remove([
             'customer_id',
             'customer_name',
             'customer_username',
+            'employee_id',
+            'employee_name',
+            'employee_username',
+            'employee_department',
             'isLoggedIn',
             'user_type',
         ]);

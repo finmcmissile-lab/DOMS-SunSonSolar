@@ -8,16 +8,26 @@ class FreeQuote extends BaseController
 {
     public function index()
     {
-        // Show the form when the visitor opens the page.
-        if ($this->request->getMethod() === 'GET') {
-            return view('free_quote');
-        }
+        // Require login before allowing access to the quote form.
+if (! session()->get('isLoggedIn')) {
+    session()->setFlashdata(
+        'login_required',
+        'Please log in to access Sun Son Solar services.'
+    );
+
+    return redirect()->to(site_url('login'));
+}
+
+// Show the form when the visitor opens the page.
+if ($this->request->getMethod() === 'GET') {
+    return view('free_quote');
+}
 
         // Validate the submitted form.
         $rules = [
             'full_name' => 'required|max_length[150]',
             'email' => 'required|valid_email|max_length[150]',
-            'phone_number' => 'required|max_length[20]',
+            'phone_number' => 'required|regex_match[/^[0-9]{11}$/]',
             'property_address' => 'required',
             'property_type' => 'required|in_list[House,Apartment,Commercial,Other]',
             'monthly_electricity_bill' => 'permit_empty|decimal|greater_than_equal_to[0]|less_than_equal_to[99999999.99]',
