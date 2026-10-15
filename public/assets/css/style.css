@@ -1,0 +1,569 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(245, 184, 0, 0.20),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(11, 37, 69, 0.94),
+            rgba(8, 126, 184, 0.82)
+        ),
+        url("../images/solarsun-background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #1d2b3a;
+    padding: 45px 20px;
+}
+
+/* Main container */
+.container {
+    width: 100%;
+    max-width: 760px;
+    margin: auto;
+    background: #ffffff;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow:
+        0 24px 60px rgba(3, 20, 40, 0.30),
+        0 0 0 1px rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(220, 236, 247, 0.9);
+}
+
+/* Solar company header */
+.logo {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        #0b2545 0%,
+        #075985 58%,
+        #087eb8 100%
+    );
+    color: white;
+    text-align: center;
+    padding: 38px 20px 42px;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Solar rays */
+.logo::before {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    top: -145px;
+    right: -40px;
+    background: rgba(255, 207, 64, 0.15);
+    box-shadow:
+        0 0 0 25px rgba(255, 207, 64, 0.08),
+        0 0 0 50px rgba(255, 207, 64, 0.05);
+}
+
+/* Sun */
+.sun-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    margin-bottom: 12px;
+
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffd95a, #f5b800);
+
+    color: #ffffff;
+    font-size: 38px;
+
+    box-shadow:
+        0 0 0 8px rgba(255, 211, 71, 0.18),
+        0 0 25px rgba(255, 204, 55, 0.45);
+}
+
+/* Solar panel effect behind header */
+.logo::after {
+    content: "";
+    position: absolute;
+    bottom: -38px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+
+    width: 420px;
+    height: 95px;
+
+    background:
+        linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.15) 25%, transparent 26%),
+        linear-gradient(0deg, transparent 24%, rgba(255,255,255,0.15) 25%, transparent 26%),
+        #075985;
+
+    background-size: 65px 65px;
+
+    border: 2px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+
+    opacity: 0.8;
+}
+
+.logo h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+
+.logo p {
+    position: relative;
+    z-index: 2;
+
+    font-size: 14px;
+    color: #e1f4ff;
+}
+
+/* Form heading */
+.form-title {
+    padding: 38px 45px 10px;
+}
+
+.form-title h2 {
+    font-size: 27px;
+    font-weight: 800;
+    color: #0b2545;
+    letter-spacing: -0.4px;
+    margin-bottom: 9px;
+}
+
+.form-title p {
+    color: #718096;
+    font-size: 14px;
+}
+
+/* Form */
+form {
+    padding: 20px 45px 45px;
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+.form-group {
+    margin-bottom: 19px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #334155;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #cbddea;
+    border-radius: 10px;
+    background: #f7fafc;
+    color: #1d2b3a;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+}
+
+.form-group input:hover,
+.form-group select:hover {
+    border-color: #7bb7d9;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #087eb8;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(8, 126, 184, 0.13);
+}
+
+/* Department */
+#department_group {
+    transition: 0.2s ease;
+}
+
+/* Register button */
+button {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 8px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffd34d, #f5b800);
+    color: #0b2545;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(245, 184, 0, 0.22);
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #ffe17a, #ffca28);
+    box-shadow: 0 9px 22px rgba(245, 184, 0, 0.32);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+/* Mobile */
+/* Registration messages */
+.message {
+    display: none;
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.message.success {
+    display: block;
+    background: #e8f7ee;
+    border: 1px solid #8fd3a8;
+    color: #18733a;
+}
+
+.message.error {
+    display: block;
+    background: #fff0f0;
+    border: 1px solid #e5a3a3;
+    color: #b42323;
+}
+
+.message ul {
+    margin: 5px 0 0 20px;
+    padding: 0;
+}
+
+.message li {
+    margin-bottom: 3px;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .container {
+        border-radius: 14px;
+    }
+
+    .logo {
+        padding: 30px 15px 35px;
+    }
+
+    .logo h1 {
+        font-size: 28px;
+    }
+
+    .sun-icon {
+        width: 62px;
+        height: 62px;
+        font-size: 32px;
+    }
+
+    .form-title {
+        padding: 30px 25px 10px;
+    }
+
+    form {
+        padding: 20px 25px 30px;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+    /* Registration message */
+.message {
+    display: none;
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 12px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Success message */
+.message.success {
+    display: block;
+    background: #e8f7ee;
+    border: 1px solid #8fd3a8;
+    color: #18733a;
+}
+
+/* Error message */
+.message.error {
+    display: block;
+    background: #fff0f0;
+    border: 1px solid #e5a3a3;
+    color: #b42323;
+}
+
+/* Error list */
+.message ul {
+    margin: 5px 0 0 20px;
+    padding: 0;
+}
+
+.message li {
+    margin-bottom: 3px;
+}
+
+
+/* ===== SUN SON SOLAR: SHARED MODULE THEME ===== */
+
+:root {
+    --solar-navy: #0b2545;
+    --solar-blue: #075985;
+    --solar-gold: #f5b800;
+    --solar-page: #f5f9fc;
+    --solar-border: #dce7f0;
+}
+
+/* Consistent page background */
+body {
+    background-color: var(--solar-page);
+}
+
+/* Homepage, schedule service, quote and login headers */
+.navbar,
+.schedule-navbar,
+.quote-navbar {
+    background: var(--solar-navy) !important;
+    color: #ffffff !important;
+    border-bottom: 3px solid var(--solar-gold) !important;
+    box-shadow: 0 5px 20px rgba(11, 37, 69, 0.12) !important;
+}
+
+.navbar a,
+.schedule-navbar a,
+.quote-navbar a {
+    color: #ffffff;
+}
+
+.navbar a:hover,
+.schedule-navbar a:hover,
+.quote-navbar a:hover {
+    color: var(--solar-gold) !important;
+}
+
+/* Form cards */
+.schedule-card,
+.quote-card,
+.login-card,
+.form-panel {
+    background: #ffffff !important;
+    border: 1px solid var(--solar-border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 12px 32px rgba(11, 37, 69, 0.09) !important;
+}
+
+/* Headings */
+.schedule-card h1,
+.schedule-card h2,
+.quote-card h1,
+.quote-card h2,
+.quote-card-heading,
+.login-card h1,
+.login-card h2,
+.form-heading h1,
+.form-heading h2 {
+    color: var(--solar-navy) !important;
+}
+
+/* Form labels */
+.schedule-card label,
+.quote-card label,
+.login-card label,
+.form-panel label,
+.form-group label {
+    color: var(--solar-navy);
+    font-weight: 600;
+}
+
+/* Text fields */
+.schedule-card input,
+.schedule-card select,
+.schedule-card textarea,
+.quote-card input,
+.quote-card select,
+.quote-card textarea,
+.login-card input,
+.form-panel input,
+.form-panel select,
+.form-panel textarea {
+    border: 1px solid #cbd9e5;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1d2b3a;
+}
+
+.schedule-card input:focus,
+.schedule-card select:focus,
+.schedule-card textarea:focus,
+.quote-card input:focus,
+.quote-card select:focus,
+.quote-card textarea:focus,
+.login-card input:focus,
+.form-panel input:focus,
+.form-panel select:focus,
+.form-panel textarea:focus {
+    border-color: var(--solar-blue);
+    outline: 2px solid rgba(7, 89, 133, 0.12);
+    outline-offset: 1px;
+}
+
+/* Primary buttons */
+.schedule-card button,
+.quote-card button,
+.login-card button,
+.form-panel button,
+.schedule-card input[type="submit"],
+.quote-card input[type="submit"],
+.login-card input[type="submit"],
+.form-panel input[type="submit"] {
+    border-color: var(--solar-gold);
+    border-radius: 8px;
+    background: var(--solar-gold);
+    color: var(--solar-navy);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.schedule-card button:hover,
+.quote-card button:hover,
+.login-card button:hover,
+.form-panel button:hover,
+.schedule-card input[type="submit"]:hover,
+.quote-card input[type="submit"]:hover,
+.login-card input[type="submit"]:hover,
+.form-panel input[type="submit"]:hover {
+    background: #ffd34d;
+    color: var(--solar-navy);
+}
+
+
+/* Shared Sun Son Solar background */
+body {
+    background-color: #f5f9fc;
+    background-image:
+        linear-gradient(
+            rgba(245, 249, 252, 0.82),
+            rgba(245, 249, 252, 0.82)
+        ),
+        url("../images/solarsun-background.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+
+/* ===== SHARED BACKGROUND FIX ===== */
+body {
+    background-color: #f5f9fc !important;
+    background-image:
+        linear-gradient(
+            rgba(245, 249, 252, 0.82),
+            rgba(245, 249, 252, 0.82)
+        ),
+        url("../images/solarsun-background.jpg") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+}
+
+/* Let the shared background show through the Login page */
+.page-wrapper {
+    background: transparent !important;
+}
+
+/* ===== SHARED SUN SON SOLAR BACKGROUND ===== */
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #f5f9fc !important;
+    background-image:
+        linear-gradient(
+            rgba(245, 249, 252, 0.55),
+            rgba(245, 249, 252, 0.55)
+        ),
+        url("../images/solarsun-background.jpg") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+}
+
+
+.page-wrapper {
+    background: transparent !important;
+}
+
+body {
+    background-color: #f5f9fc;
+    background-image:
+        linear-gradient(
+            rgba(245, 249, 252, 0.82),
+            rgba(245, 249, 252, 0.82)
+        ),
+        url("../images/solarsun-background.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.page-wrapper {
+    background: transparent;
+}
